@@ -1,5 +1,6 @@
 // this essentially copies how lodash runs object iteration
-import { runEsTest } from "./lodash-es-test/lodash-es-test/benchmark-lodash-es";
+
+import { runEsTest } from "./pages/lodash/lodash-es-test/benchmark-lodash-es";
 
 export const fastForEachObjectKey = <T>(object: T, toRun: (key: string, value: T[keyof T]) => void) => {
   const keys = Object.keys(object)

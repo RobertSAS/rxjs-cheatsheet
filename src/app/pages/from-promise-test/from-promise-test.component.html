@@ -1,0 +1,20 @@
+<app-code-snippet [codeSnippet]="codeSnippet"></app-code-snippet>
+
+<button (click)="doSubscribe()">Do subscribe</button>
+
+<div style="max-width: 400px">
+  <p>from() eagerly completes it's inner data when the function is called</p>
+
+  <app-observable-graph
+    [endTime]="endTime"
+    [startTime]="subscribeStartTime"
+    [stream$]="emitStream$"
+    title="Emits"
+  ></app-observable-graph>
+  <app-observable-graph
+    [endTime]="endTime"
+    [startTime]="startTime"
+    [stream$]="runStream$"
+    title="Runs"
+  ></app-observable-graph>
+</div>

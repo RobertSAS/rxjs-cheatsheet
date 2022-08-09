@@ -1,5 +1,5 @@
 import { each } from "lodash-es";
-import { fastForEachObjectKey, LodashResultsI } from "../../testFunctions";
+import { fastForEachObjectKey, LodashResultsI } from "../../../testFunctions";
 
 export const lodashObjectRunners = {
   'object-iterate': (values: { [key: string]: number; }) => {

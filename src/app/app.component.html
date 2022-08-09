@@ -1,3 +1,20 @@
-<li><a routerLink="lodash" routerLinkActive="active">lodash tests</a></li>
-<li><a routerLink="lodash-es" routerLinkActive="active">lodash-es tests</a></li>
-<router-outlet></router-outlet>
+<div style="display: grid; grid-template-columns: 1fr 0fr 7fr; height: 100%; width: 100%">
+  <div style="background: #f1f1f1; border-right: 1px solid black; margin-right: 12px; height: 100%">
+    <ul>
+      <li><a routerLink="" routerLinkActive="active">home</a></li>
+    </ul>
+    <ul>
+      <app-expandable-tree [title]="'lodash benchmarks'">
+        <li><a routerLink="lodash/basic" routerLinkActive="active">lodash tests</a></li>
+        <li><a routerLink="lodash/es" routerLinkActive="active">lodash-es tests</a></li>
+      </app-expandable-tree>
+    </ul>
+    <ul>
+      <app-expandable-tree [title]="'RxJS multi streams'">
+        <li><a routerLink="fromPromise" routerLinkActive="active">concat and fromPromise</a></li>
+        <li><a routerLink="forkJoin" routerLinkActive="active">forkJoin</a></li>
+      </app-expandable-tree>
+    </ul>
+  </div>
+  <router-outlet></router-outlet>
+</div>
