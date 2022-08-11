@@ -9,7 +9,7 @@ console.log('loaded LodashTestComponent');
 @Component({
   selector: 'app-lodash-test',
   templateUrl: './lodash-test.component.html',
-  styleUrls: ['./lodash-test.component.css'],
+  styleUrls: ['../../pages.scss'],
   standalone: true,
   imports: [
     CommonModule,

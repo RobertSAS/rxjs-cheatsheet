@@ -11,7 +11,7 @@ import { CommonModule } from "@angular/common";
   ]
 })
 export class ExpandableTreeComponent implements OnInit {
-  expanded = false;
+  @Input() expanded = false;
   @Input() title = 'Expand';
 
   constructor() {

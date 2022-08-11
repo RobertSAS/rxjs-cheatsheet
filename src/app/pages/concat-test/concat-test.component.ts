@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { delay, forkJoin, of, Subject, tap } from "rxjs";
+import { CommonModule } from "@angular/common";
+import { concat, delay, of, ReplaySubject, Subject, takeUntil, tap } from "rxjs";
 import { CodeSnippetComponent } from "../../components/code-snippet/code-snippet.component";
 import { ObservableGraphComponent } from "../../components/observable-graph/observable-graph.component";
-import { CommonModule } from "@angular/common";
-
-console.log('loaded ForkJoinTestComponent');
 
 @Component({
-  selector: 'app-fork-join-test',
-  templateUrl: './fork-join-test.component.html',
+  selector: 'app-concat-test',
+  templateUrl: './concat-test.component.html',
   styleUrls: ['../pages.scss'],
   standalone: true,
   imports: [
@@ -17,24 +15,25 @@ console.log('loaded ForkJoinTestComponent');
     CommonModule,
   ]
 })
-export class ForkJoinTestComponent implements OnInit {
+export class ConcatTestComponent implements OnInit {
   codeSnippet = `
-  forkJoinStream$ = forkJoin([
-    this.makeStream(1),
+  streams = [this.makeStream(1),
     this.makeStream(2),
-    this.makeStream(3),
-    this.makeStream(4),
-    this.makeStream(5),
-    this.makeStream(6),
-    this.makeStream(7)
-  ])
+    this.makeStream(3)];
+  concatStream$ = concat(...this.streams)
   `
 
-
+  triggerStreamSubject$ = new ReplaySubject<string>(1);
   emitStream$ = new Subject<{ label: string, time: number }>();
   runStream$ = new Subject<{ label: string, time: number }>();
+  triggerStream$ = this.triggerStreamSubject$.pipe(tap(data => this.runStream$.next({
+    label: `${ data }`,
+    time: Date.now()
+  })));
   subscribeStartTime = Date.now();
   endTime = Number.NEGATIVE_INFINITY;
+  triggerCount = 0;
+  destroy$ = new Subject<void>();
 
   makeStream = (i: number) => of(i).pipe(delay(Math.random() * 1000 + 1000), tap(() => this.runStream$.next(
     {
@@ -43,22 +42,19 @@ export class ForkJoinTestComponent implements OnInit {
     }
   )));
 
-  forkJoinStream$ = forkJoin([
-    this.makeStream(1),
+  private streams = [this.makeStream(1),
     this.makeStream(2),
     this.makeStream(3),
-    this.makeStream(4),
-    this.makeStream(5),
-    this.makeStream(6),
-    this.makeStream(7)
-  ])
+    this.triggerStream$
+  ];
+  concatStream$ = concat(...this.streams)
 
   ngOnInit(): void {
   }
 
   doSubscribe(): void {
     this.subscribeStartTime = Date.now();
-    this.forkJoinStream$.subscribe({
+    this.concatStream$.pipe(takeUntil(this.destroy$)).subscribe({
         next: (data) => {
           this.emitStream$.next({
             label: `${ data }`,
@@ -66,11 +62,24 @@ export class ForkJoinTestComponent implements OnInit {
           })
         },
         complete: () => {
-          this.endTime = Date.now();
           this.emitStream$.complete();
           this.runStream$.complete();
+          this.triggerStreamSubject$.complete();
         }
       }
     )
+  }
+
+  doComplete(): void {
+    this.endTime = Date.now();
+    this.destroy$.next();
+  }
+
+  doTrigger(): void {
+    this.triggerStreamSubject$.next(`${ this.triggerCount++ }`);
+  }
+
+  ngOnDestroy(): void {
+    this.doComplete();
   }
 }

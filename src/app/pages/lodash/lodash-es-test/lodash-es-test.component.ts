@@ -11,7 +11,7 @@ console.log('loaded LodashEsTestComponent');
 @Component({
   selector: 'app-lodash-es-test',
   templateUrl: './lodash-es-test.component.html',
-  styleUrls: ['./lodash-es-test.component.css'],
+  styleUrls: ['../../pages.scss'],
   standalone: true,
   imports: [
     CommonModule,

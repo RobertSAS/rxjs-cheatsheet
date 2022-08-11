@@ -10,9 +10,23 @@
       </app-expandable-tree>
     </ul>
     <ul>
-      <app-expandable-tree [title]="'RxJS multi streams'">
-        <li><a routerLink="fromPromise" routerLinkActive="active">concat and fromPromise</a></li>
+      <app-expandable-tree [expanded]="true" [title]="'RxJS multi streams'">
+        <li><a routerLink="concat" routerLinkActive="active">concat</a></li>
         <li><a routerLink="forkJoin" routerLinkActive="active">forkJoin</a></li>
+        <li><a routerLink="merge" routerLinkActive="active">merge</a></li>
+        <li><a routerLink="combineLatest" routerLinkActive="active">combineLatest</a></li>
+      </app-expandable-tree>
+    </ul>
+    <ul>
+      <app-expandable-tree [expanded]="true" [title]="'RxJS Error Handling'">
+        <li><a routerLink="catchError" routerLinkActive="active">catchError</a></li>
+        <li><a routerLink="retryWhen" routerLinkActive="active">retry</a></li>
+      </app-expandable-tree>
+    </ul>
+    <ul>
+      <app-expandable-tree [expanded]="true" [title]="'RxJS weirdos'">
+        <li><a routerLink="fromPromise" routerLinkActive="active">fromPromise</a></li>
+        <li><a routerLink="hotCold" routerLinkActive="active">hot and cold</a></li>
       </app-expandable-tree>
     </ul>
   </div>

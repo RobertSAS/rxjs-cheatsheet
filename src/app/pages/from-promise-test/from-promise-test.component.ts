@@ -9,7 +9,7 @@ console.log('loaded FromPromiseTestComponent');
 @Component({
   selector: 'app-from-promise-test',
   templateUrl: './from-promise-test.component.html',
-  styleUrls: ['./from-promise-test.component.css'],
+  styleUrls: ['../pages.scss'],
   standalone: true,
   imports: [
     CodeSnippetComponent,

@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { delay, forkJoin, of, Subject, tap } from "rxjs";
+import { CommonModule } from "@angular/common";
+import { delay, merge, of, Subject, tap } from "rxjs";
 import { CodeSnippetComponent } from "../../components/code-snippet/code-snippet.component";
 import { ObservableGraphComponent } from "../../components/observable-graph/observable-graph.component";
-import { CommonModule } from "@angular/common";
-
-console.log('loaded ForkJoinTestComponent');
 
 @Component({
-  selector: 'app-fork-join-test',
-  templateUrl: './fork-join-test.component.html',
+  selector: 'app-concat-test',
+  templateUrl: './merge-test.component.html',
   styleUrls: ['../pages.scss'],
   standalone: true,
   imports: [
@@ -17,17 +15,12 @@ console.log('loaded ForkJoinTestComponent');
     CommonModule,
   ]
 })
-export class ForkJoinTestComponent implements OnInit {
+export class MergeTestComponent implements OnInit {
   codeSnippet = `
-  forkJoinStream$ = forkJoin([
-    this.makeStream(1),
+  streams = [this.makeStream(1),
     this.makeStream(2),
-    this.makeStream(3),
-    this.makeStream(4),
-    this.makeStream(5),
-    this.makeStream(6),
-    this.makeStream(7)
-  ])
+    this.makeStream(3)];
+  mergeStream$ = concat(...this.streams)
   `
 
 
@@ -43,22 +36,17 @@ export class ForkJoinTestComponent implements OnInit {
     }
   )));
 
-  forkJoinStream$ = forkJoin([
-    this.makeStream(1),
+  private streams = [this.makeStream(1),
     this.makeStream(2),
-    this.makeStream(3),
-    this.makeStream(4),
-    this.makeStream(5),
-    this.makeStream(6),
-    this.makeStream(7)
-  ])
+    this.makeStream(3)];
+  mergeStream$ = merge(...this.streams)
 
   ngOnInit(): void {
   }
 
   doSubscribe(): void {
     this.subscribeStartTime = Date.now();
-    this.forkJoinStream$.subscribe({
+    this.mergeStream$.subscribe({
         next: (data) => {
           this.emitStream$.next({
             label: `${ data }`,

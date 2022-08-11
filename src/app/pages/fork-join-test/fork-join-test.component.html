@@ -2,9 +2,10 @@
 
 <button (click)="doSubscribe()">Do subscribe</button>
 
-<div style="max-width: 400px">
+<div class="observable_area">
   <p>forkJoin will spin up all streams in parallel and then emit once as an array (which is in same order as original
     array)</p>
+  <p>Good to quickly complete all streams in parallel and emit once (load all at once)</p>
 
   <app-observable-graph
     [endTime]="endTime"
@@ -14,7 +15,7 @@
   ></app-observable-graph>
   <app-observable-graph
     [endTime]="endTime"
-    [startTime]="startTime"
+    [startTime]="subscribeStartTime"
     [stream$]="runStream$"
     title="Runs"
   ></app-observable-graph>

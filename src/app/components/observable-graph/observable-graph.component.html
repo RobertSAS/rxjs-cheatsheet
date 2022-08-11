@@ -1,10 +1,13 @@
-<div style="width: 100%; position: relative; margin: auto; height: {{(graphData?.events?.length || 1) * 25}}px">
+<div>
   <span>Displaying : {{title}}</span><span *ngIf="graphData"> total time: {{(graphData.totalTime)/1000 + 's'}}</span>
+
+  <div style="height: {{(graphData?.events?.length || 1) * 12 + 16}}px">
   <ng-container *ngIf="graphData">
     <ng-container *ngFor="let event of graphData.events">
-      <div [ngStyle]="getStyleForMarble(event, graphData)">
+      <div class="marble" [ngStyle]="getStyleForMarble(event, graphData)">
         <span [title]="(event.time - graphData.startTime)/1000 + 's'">{{event.label}}</span>
       </div>
     </ng-container>
   </ng-container>
+</div>
 </div>

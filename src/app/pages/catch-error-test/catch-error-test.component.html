@@ -1,0 +1,30 @@
+<p>Replacing the stream with a new stream</p>
+<app-code-snippet [codeSnippet]="codeSnippet2"></app-code-snippet>
+
+
+<button (click)="doSubscribe()">Do subscribe</button>
+<button (click)="doError()" [disabled]="makeErrors">Cause Error</button>
+<button (click)="doComplete()">Do Complete</button>
+
+<div class="observable_area">
+  <p>catchError will replace the stream upon an error</p>
+  <p>but it can be also be used like tap() by throwing the error again (this will close the stream via error: () =>
+    ())</p>
+
+  <app-observable-graph
+    [endTime]="endTime"
+    [startTime]="startTime"
+    [stream$]="emitStream$"
+    title="Emits"
+  ></app-observable-graph>
+  <app-observable-graph
+    [endTime]="endTime"
+    [startTime]="startTime"
+    [stream$]="runStream$"
+    title="Runs"
+  ></app-observable-graph>
+</div>
+
+<div><p>"Tapping" the error</p>
+  <app-code-snippet [codeSnippet]="codeSnippet1"></app-code-snippet>
+</div>

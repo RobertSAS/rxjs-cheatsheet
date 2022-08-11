@@ -7,7 +7,7 @@ console.log('loaded ObservableGraphComponent');
 @Component({
   selector: 'app-observable-graph',
   templateUrl: './observable-graph.component.html',
-  styleUrls: ['./observable-graph.component.css'],
+  styleUrls: ['./observable-graph.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule
@@ -42,17 +42,10 @@ export class ObservableGraphComponent implements OnInit {
 
   getStyleForMarble = (marble: MarbleEvent, graphData: GraphData) => {
     return ({
-      position: "absolute",
-      "border-radius": "100%",
-      background: ["Start", "Complete"].includes(marble.label) ? "" : "lightgray",
-      width: "20px",
-      height: "20px",
-      transform: "translate(-50%, -50%)",
+      background: ["Start", "Complete"].includes(marble.label) ? "white" : "lightgray",
       left: `${ (marble.time - this.graphData.startTime) / this.graphData.totalTime * 100 }%`,
-      top: `${ ++graphData.zIndex * 22 + 12 }px`,
-      display: "flex",
-      "align-items": "center",
-      "justify-content": "center",
+      top: `${ ++graphData.zIndex * 12 + 12 }px`,
+      zIndex: ["Complete"].includes(marble.label) ? 9000 : graphData.zIndex,
     })
   }
 

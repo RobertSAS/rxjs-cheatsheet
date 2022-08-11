@@ -3,7 +3,9 @@
 <button (click)="doSubscribe()">Do subscribe</button>
 
 <div class="observable_area">
-  <p>from() eagerly completes it's inner data when the function is called</p>
+  <p>merge will run all streams in parallel, and emit each one as it completes</p>
+  <p>it's syntax is also a bit weird; it takes a list of arguments, not an array, ergo ...[] it</p>
+  <p>Good to quickly complete all streams in parallel and emit each time (procedural loading)</p>
 
   <app-observable-graph
     [endTime]="endTime"
@@ -13,7 +15,7 @@
   ></app-observable-graph>
   <app-observable-graph
     [endTime]="endTime"
-    [startTime]="startTime"
+    [startTime]="subscribeStartTime"
     [stream$]="runStream$"
     title="Runs"
   ></app-observable-graph>
