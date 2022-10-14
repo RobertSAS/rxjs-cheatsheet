@@ -9,11 +9,12 @@ import { MarbleEvent } from "../components/observable-graph/observable-graph.com
  * this will close immediately if not subscribed, otherwise, will close only after last subscriber closes
  * @param input the observable to make hot
  * @param takeCount how many emits to take from the stream, -1 for infinite
+ * @param bufferSize the buffer for the ReplaySubject, default 1, set to -1 for infinite
  * @param takeUntilObs a takeUntil(Obs$) to exit stream early as well
  */
-export const makeHotObs$ = <T>(input: Observable<T>, takeCount = 1, takeUntilObs?: Observable<any>): Observable<T> => {
+export const makeSuperHotObs$ = <T>(input: Observable<T>, takeCount = 1, bufferSize = 1, takeUntilObs?: Observable<any>): Observable<T> => {
   const destroy$ = new Subject<void>();
-  const toReturn = new ReplaySubject<T>(1);
+  const toReturn = new ReplaySubject<T>(bufferSize > 0 ? bufferSize : undefined);
   input
     .pipe(
       takeCount > 0 ? take(takeCount) : map((res) => res),
@@ -48,3 +49,13 @@ export const makeStream = (i: number, runStream$: Subject<MarbleEvent>) => of(i)
     time: Date.now()
   }
 )));
+
+export const makePromise = (i: number, runStream$: Subject<MarbleEvent>) => new Promise((resolve) => {
+  setTimeout(() => {
+    runStream$.next({
+      label: `${ i }`,
+      time: Date.now()
+    })
+    resolve(i)
+  }, Math.random() * 2000 + 1000)
+})

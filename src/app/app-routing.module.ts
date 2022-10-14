@@ -4,36 +4,44 @@ import { RouterModule, Routes } from '@angular/router';
 const routes = [
   {
     path: 'fromPromise',
-    loadComponent: () => import('./pages/from-promise-test/from-promise-test.component').then(c => c.FromPromiseTestComponent)
+    loadComponent: () => import('./pages/rxjs/function-examples/from-promise-test/from-promise-test.component').then(c => c.FromPromiseTestComponent)
+  },
+  {
+    path: 'makeCold',
+    loadComponent: () => import('./pages/rxjs/use-cases/make-cold/make-cold.component').then(c => c.MakeColdComponent)
+  },
+  {
+    path: 'makeSuperHot',
+    loadComponent: () => import('./pages/rxjs/use-cases/make-superhot/make-super-hot.component').then(c => c.MakeSuperHotComponent)
   },
 
   {
     path: 'forkJoin',
-    loadComponent: () => import('./pages/fork-join-test/fork-join-test.component').then(c => c.ForkJoinTestComponent)
+    loadComponent: () => import('./pages/rxjs/function-examples/fork-join-test/fork-join-test.component').then(c => c.ForkJoinTestComponent)
   },
   {
     path: 'concat',
-    loadComponent: () => import('./pages/concat-test/concat-test.component').then(c => c.ConcatTestComponent)
+    loadComponent: () => import('./pages/rxjs/function-examples/concat-test/concat-test.component').then(c => c.ConcatTestComponent)
   },
   {
     path: 'merge',
-    loadComponent: () => import('./pages/merge-test/merge-test.component').then(c => c.MergeTestComponent)
+    loadComponent: () => import('./pages/rxjs/function-examples/merge-test/merge-test.component').then(c => c.MergeTestComponent)
   },
   {
     path: 'combineLatest',
-    loadComponent: () => import('./pages/combine-latest-test/combine-latest-test.component').then(c => c.CombineLatestTest)
+    loadComponent: () => import('./pages/rxjs/function-examples/combine-latest-test/combine-latest-test.component').then(c => c.CombineLatestTest)
   },
   {
     path: 'catchError',
-    loadComponent: () => import('./pages/catch-error-test/catch-error-test.component').then(c => c.CatchErrorTestComponent)
+    loadComponent: () => import('./pages/rxjs/pipe-examples/catch-error-test/catch-error-test.component').then(c => c.CatchErrorTestComponent)
   },
   {
     path: 'retryWhen',
-    loadComponent: () => import('./pages/retry-test/retry-test.component').then(c => c.RetryTestComponent)
+    loadComponent: () => import('./pages/rxjs/pipe-examples/retry-test/retry-test.component').then(c => c.RetryTestComponent)
   },
   {
     path: 'hotCold',
-    loadComponent: () => import('./pages/hot-cold-test/hot-cold-test.component').then(c => c.HotColdTestComponent)
+    loadComponent: () => import('./pages/rxjs/use-cases/hot-cold-test/share-cold-test.component').then(c => c.ShareColdTestComponent)
   },
 
 ] as Routes;

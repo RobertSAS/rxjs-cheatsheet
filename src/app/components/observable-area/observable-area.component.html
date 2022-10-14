@@ -1,0 +1,28 @@
+<div *ngIf="_testStream$">
+  <p>
+    <ng-content></ng-content>
+  </p>
+
+  <app-code-snippet [codeSnippet]="codeSnippet"></app-code-snippet>
+
+  <button (click)="doSubscribe()">Start subscribe</button>
+  <button (click)="doError()" *ngIf="showMakeErrors" [ngStyle]="{'border-color': makeErrors ? 'red' : 'green'}">Toggle
+    Errors
+  </button>
+  <button (click)="doComplete()">Close test stream</button>
+
+  <div class="observable_area">
+    <app-observable-graph
+      [endTime]="endTime"
+      [startTime]="startTime"
+      [stream$]="emitStream$"
+      title="Emits"
+    ></app-observable-graph>
+    <app-observable-graph
+      [endTime]="endTime"
+      [startTime]="startTime"
+      [stream$]="runStream$"
+      title="Runs"
+    ></app-observable-graph>
+  </div>
+</div>

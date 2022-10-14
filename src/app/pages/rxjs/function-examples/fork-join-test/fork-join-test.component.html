@@ -1,0 +1,9 @@
+<app-observable-area
+  [codeSnippet]="codeSnippet"
+  [runStream$]="runStream$"
+  [testStream$]="testStream$"
+>
+  <p>forkJoin will spin up all streams in parallel and then emit once as an array (which is in same order as original
+    array)</p>
+  <p>Good to quickly complete all streams in parallel and emit once (load all at once)</p>
+</app-observable-area>

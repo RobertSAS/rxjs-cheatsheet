@@ -1,0 +1,19 @@
+<div>
+  <p>If we consider that streams needs subscribers to run...</p>
+  <p>we can undo that behaviour by making it like a promise:</p>
+  <app-code-snippet [codeSnippet]="hotSnippet"></app-code-snippet>
+
+  <div>
+    <app-observable-area
+      [codeSnippet]="codeSnippet"
+      [runStream$]="runStream$"
+      [testStream$]="testStream$"
+    >
+      <p>Here we wrap up a stream in makeSuperHotObs$ to make it run like a promise</p>
+      <p>This can be useful for when logic is an observable but people may not subscribe or care about results</p>
+      <p>E.g. selecting a new tab, opening a dropdown, loading an image, etc</p>
+      <p>In code I call this a "super hot" observable, because not only does it share it's results like a hot observable
+        but it runs eagerly like a promise</p>
+    </app-observable-area>
+  </div>
+</div>

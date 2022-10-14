@@ -1,0 +1,10 @@
+<app-observable-area
+  [codeSnippet]="codeSnippet"
+  [runStream$]="runStream$"
+  [showSubscriberLabels]="true"
+  [testStream$]="testStream$"
+>
+  <h1>Cold Test</h1>
+  <p>In a cold setup, each added subscriber will run it's own logic, This means emits are not synchronised for our
+    example.</p>
+</app-observable-area>

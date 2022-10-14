@@ -1,0 +1,10 @@
+<app-observable-area
+  [codeSnippet]="codeSnippet"
+  [runStream$]="runStream$"
+  [testStream$]="testStream$"
+>
+  <p>concat will run all streams in a row, emitting each value as it goes</p>
+  <p>it's syntax is also a bit weird; it takes a list of arguments, not an array, ergo ...[] it</p>
+  <p>Good for having an ordered execution of streams</p>
+  <button (click)="doTrigger()">Do Trigger</button>
+</app-observable-area>

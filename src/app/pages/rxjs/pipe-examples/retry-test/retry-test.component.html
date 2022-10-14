@@ -1,0 +1,5 @@
+<app-observable-area (makeErrorsChange)="makeErrors = $event" [codeSnippet]="codeSnippet" [runStream$]="runStream$"
+                     [showMakeErrors]="true" [testStream$]="testStream$">
+  <p>retry(x) will retry the source x times before closing the subscription</p>
+  <p>retry(count: x, delay: (err, count) => ...) can be used to fine tune a delay and maximum retry</p>
+</app-observable-area>

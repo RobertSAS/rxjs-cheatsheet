@@ -1,0 +1,22 @@
+<div>
+  <p>If we consider that from() is a hot observable</p>
+  <p>we can undo that behaviour by making it cold:</p>
+  <app-code-snippet [codeSnippet]="coldSnippet"></app-code-snippet>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr">
+    <div>
+      <h1>Example from <a routerLink="fromPromise">/fromPromise</a></h1>
+      <app-from-promise-test></app-from-promise-test>
+    </div>
+    <div>
+      <h1>Forcing that to behave cold</h1>
+      <app-observable-area
+        [codeSnippet]="codeSnippet"
+        [runStream$]="runStream$"
+        [testStream$]="testStream$"
+      >
+        <p>Here we wrap up from() in a makeColdObs$ to prevent it from triggering before subscriptions are made</p>
+      </app-observable-area>
+    </div>
+  </div>
+</div>
