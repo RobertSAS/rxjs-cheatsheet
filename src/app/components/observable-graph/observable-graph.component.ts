@@ -20,7 +20,7 @@ export class ObservableGraphComponent implements OnInit {
   @Input() endTime!: number;
 
   events: MarbleEvent[] = [];
-  graphData!: GraphData;
+  graphData?: GraphData;
   destroy$ = new Subject<void>();
 
   constructor(private cdr: ChangeDetectorRef) {
@@ -40,14 +40,12 @@ export class ObservableGraphComponent implements OnInit {
     )
   };
 
-  getStyleForMarble = (marble: MarbleEvent, graphData: GraphData) => {
-    return ({
-      background: ["Start", "Complete"].includes(marble.label) ? "white" : "lightgray",
-      left: `${ (marble.time - this.graphData.startTime) / this.graphData.totalTime * 100 }%`,
-      top: `${ ++graphData.zIndex * 12 + 12 }px`,
-      zIndex: ["Complete"].includes(marble.label) ? 9000 : graphData.zIndex,
-    })
-  }
+  getStyleForMarble = (marble: MarbleEvent, graphData: GraphData) => !this.graphData ? {} : ({
+    background: ["Start", "Complete"].includes(marble.label) ? "white" : "lightgray",
+    left: `${ (marble.time - this.graphData.startTime) / this.graphData.totalTime * 100 }%`,
+    top: `${ ++graphData.zIndex * 12 + 12 }px`,
+    zIndex: ["Complete"].includes(marble.label) ? 9000 : graphData.zIndex,
+  })
 
   ngOnInit(): void {
   }

@@ -3,11 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes = [
   {
-    path: 'lodash',
-    loadChildren: () => import('./pages/lodash/routes').then(r => r.LODASH_ROUTES)
-  },
-
-  {
     path: 'fromPromise',
     loadComponent: () => import('./pages/from-promise-test/from-promise-test.component').then(c => c.FromPromiseTestComponent)
   },
