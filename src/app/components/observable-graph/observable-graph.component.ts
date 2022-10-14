@@ -27,6 +27,9 @@ export class ObservableGraphComponent implements OnInit {
   }
 
   @Input() set stream$(input: Observable<MarbleEvent>) {
+    if (!input) {
+      return;
+    }
     this.destroy$.next();
     this.events = [];
     input.pipe(takeUntil(this.destroy$)).subscribe(

@@ -1,0 +1,15 @@
+<div>
+  <p>There's two types of observables - Hot and Cold</p>
+  <p>Cold observables aren't ready for subscribers - all logic created per subscriber</p>
+  <p>While Hot observables are ready for new subscribers - all logic is ran once then given to all subscribers</p>
+  <p>This can cause extremely negative performance outcomes, but also lead to hugely confusing logical outcomes if
+    forgotten</p>
+  <p>
+    In either case, if there's no subscribers the logic doesn't run in the background
+  </p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr">
+    <app-share-test></app-share-test>
+    <app-cold-test></app-cold-test>
+  </div>
+</div>

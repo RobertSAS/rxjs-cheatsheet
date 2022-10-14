@@ -1,0 +1,9 @@
+<app-observable-area
+  [codeSnippet]="codeSnippet"
+  [runStream$]="runStream$"
+  [testStream$]="testStream$"
+>
+  <p>from() eagerly completes it's inner data when the function is called</p>
+  <p>because of that, the concat(...) function doesn't run in any order, it only emits in order</p>
+  <p>If we want to "fix" this behaviour, see the <a routerLink="/makeCold">make cold example</a></p>
+</app-observable-area>

@@ -1,0 +1,9 @@
+<app-observable-area
+  [codeSnippet]="codeSnippet"
+  [runStream$]="runStream$"
+  [testStream$]="testStream$"
+>
+  <p>merge will run all streams in parallel, and emit each one as it completes</p>
+  <p>it's syntax is also a bit weird; it takes a list of arguments, not an array, ergo ...[] it</p>
+  <p>Good to quickly complete all streams in parallel and emit each time (procedural loading)</p>
+</app-observable-area>

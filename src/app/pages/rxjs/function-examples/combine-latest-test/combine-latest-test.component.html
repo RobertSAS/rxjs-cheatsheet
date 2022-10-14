@@ -1,0 +1,12 @@
+<app-observable-area
+  [codeSnippet]="codeSnippet"
+  [runStream$]="runStream$"
+  [testStream$]="testStream$"
+>
+  <p>combineLatest is a bit like merge and forkJoin</p>
+  <p>this will execute all streams in parallel, and then emit when all have emitted at least once</p>
+  <p>and then it will emit all the latest values when anyone updates</p>
+  <p>Good for combining multiple inputs into one output</p>
+
+  <button (click)="doTrigger()">Do Trigger</button>
+</app-observable-area>
